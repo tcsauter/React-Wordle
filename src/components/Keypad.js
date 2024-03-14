@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
+//todo: put keypad in qwerty order
+//todo: make keypad rows match a regular keyboard
+//todo: make keys clickable
+
 export default function Keypad({ usedKeys }) {
   const [letters, setLetters] = useState(null)
 

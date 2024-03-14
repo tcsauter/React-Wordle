@@ -1,11 +1,3 @@
-//todo: move z to third row of keypad
-//todo: remove onscreen debugging items
-//todo: indicate guess in error to user with message and animation
-//todo: dismiss modal
-//todo: bring back modal at will
-//todo: validate guess with dictionary API 
-
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

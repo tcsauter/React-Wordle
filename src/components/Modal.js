@@ -1,5 +1,8 @@
 import React from 'react'
 
+//todo: dismiss modal
+//todo: bring back modal at will
+
 export default function Modal({ isCorrect, solution, turn }) {
   return (
     <div className="modal">
