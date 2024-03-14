@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 //todo: indicate to the user visually that a guess is in error
+  // "buzzer" animation
+  // Pop message onto screen
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0) 
