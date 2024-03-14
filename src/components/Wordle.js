@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useWordle from '../hooks/useWordle'
 
-//todo: validate guesses with dictionary api
-
 // components
 import Grid from './Grid'
 import Keypad from './Keypad'

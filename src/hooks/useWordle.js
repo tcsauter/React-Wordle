@@ -80,11 +80,16 @@ const useWordle = (solution) => {
 
   // handle keyup event & track current guess
   // if user presses enter, add the new guess
-  const handleKeyup = ({ key }) => {
+  const handleKeyup = async ({ key }) => {
     if (key === 'Enter') {
       // only add guess if turn is less than 5
       if (turn > 5) {
         console.log('you used all your guesses!')
+        return
+      }
+      // only allow valid words
+      if (!(await validateGuess(currentGuess))) {
+        console.log('your guess is not in the word bank')
         return
       }
       // do not allow duplicate words
@@ -109,6 +114,12 @@ const useWordle = (solution) => {
         setCurrentGuess(prev => prev + key)
       }
     }
+  }
+
+  async function validateGuess(guess) {
+    const check = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${guess}`)
+
+    return check.ok
   }
 
   return {turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyup}
