@@ -59,6 +59,9 @@ h1 {
 .row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
 }
+.row.current.error {
+  animation: buzzer 0.1s ease;
+}
 .keypad {
   max-width: 500px;
   margin: 20px auto;
@@ -155,10 +158,10 @@ h1 {
     transform: translateX(0);
   }
   33% {
-    transform: translateX(0.3%);
+    transform: translateX(0.8%);
   }
   66% {
-    transform: translateX(-0.3%);
+    transform: translateX(-0.8%);
   }
   100% {
     transform: translateX(0);
