@@ -89,11 +89,6 @@ const useWordle = (solution) => {
         console.log('you used all your guesses!')
         return
       }
-      // only allow valid words
-      if (!(await validateGuess(currentGuess))) {
-        console.log('your guess is not in the word bank')
-        return
-      }
       // do not allow duplicate words
       if (history.includes(currentGuess)) {
         console.log('you already tried that word.')
@@ -102,6 +97,12 @@ const useWordle = (solution) => {
       // check word is 5 chars
       if (currentGuess.length !== 5) {
         console.log('word must be 5 chars.')
+        return
+      }
+      // only allow valid words
+      if (!(await validateGuess(currentGuess))) {
+        console.log('your guess is not in the word bank')
+        setIsError(true)
         return
       }
       const formatted = formatGuess()
