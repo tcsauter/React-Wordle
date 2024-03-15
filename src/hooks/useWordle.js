@@ -1,9 +1,5 @@
 import { useState } from 'react'
 
-//todo: indicate to the user visually that a guess is in error
-  // "buzzer" animation
-  // Pop message onto screen
-
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0) 
   const [currentGuess, setCurrentGuess] = useState('')
@@ -12,6 +8,17 @@ const useWordle = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false)
   const [usedKeys, setUsedKeys] = useState({}) // {a: 'grey', b: 'green', c: 'yellow'} etc
   const [isError, setIsError] = useState(false)
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState("")
+
+  function handleError(message) {
+    setIsError(true)
+    setShowToast(true)
+    setToastMessage(message)
+    setTimeout(() => {
+      setShowToast(false)
+    }, 3500)
+  }
 
   // format a guess into an array of letter objects 
   // e.g. [{key: 'a', color: 'yellow'}]
@@ -87,26 +94,22 @@ const useWordle = (solution) => {
     if (key === 'Enter') {
       // only add guess if turn is less than 5
       if (turn > 5) {
-        console.log('you used all your guesses!')
-        setIsError(true)
+        handleError('you used all your guesses!')
         return
       }
       // do not allow duplicate words
       if (history.includes(currentGuess)) {
-        console.log('you already tried that word.')
-        setIsError(true)
+        handleError('you already tried that word.')
         return
       }
       // check word is 5 chars
       if (currentGuess.length !== 5) {
-        console.log('word must be 5 chars.')
-        setIsError(true)
+        handleError('word must be 5 chars.')
         return
       }
       // only allow valid words
       if (!(await validateGuess(currentGuess))) {
-        console.log('your guess is not in the word bank')
-        setIsError(true)
+        handleError('your guess is not in the word bank')
         return
       }
       const formatted = formatGuess()
@@ -130,7 +133,7 @@ const useWordle = (solution) => {
     return check.ok
   }
 
-  return {turn, currentGuess, guesses, isCorrect, usedKeys, isError, handleKeyup}
+  return {turn, currentGuess, guesses, isCorrect, usedKeys, isError, showToast, toastMessage, handleKeyup}
 }
 
 export default useWordle

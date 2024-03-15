@@ -5,9 +5,10 @@ import useWordle from '../hooks/useWordle'
 import Grid from './Grid'
 import Keypad from './Keypad'
 import Modal from './Modal'
+import Toast from "./Toast";
 
 export default function Wordle({ solution }) {
-  const { currentGuess, guesses, turn, isCorrect, usedKeys, handleKeyup, isError } = useWordle(solution)
+  const { currentGuess, guesses, turn, isCorrect, usedKeys, handleKeyup, isError, showToast, toastMessage } = useWordle(solution)
   const [showModal, setShowModal] = useState(false)
   
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Wordle({ solution }) {
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} isError={isError} />
       <Keypad usedKeys={usedKeys} />
       {showModal && <Modal isCorrect={isCorrect} turn={turn} solution={solution} />}
+      <Toast showToast={showToast} message={toastMessage}/>
     </div>
   )
 }

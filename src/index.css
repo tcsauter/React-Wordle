@@ -119,6 +119,23 @@ h1 {
   letter-spacing: 1px;
 }
 
+/* toast */
+.toast {
+  background: #330000;
+  color: ghostwhite;
+  width: 450px;
+  margin: 20px auto;
+  padding: 3px;
+}
+.toast.showing {
+  transition: all 1s;
+  opacity: 85%;
+}
+.toast.hidden {
+  transition: all .3s;
+  opacity: 0;
+}
+
 /* keyframe animations */
 @keyframes flip {
   0% {
