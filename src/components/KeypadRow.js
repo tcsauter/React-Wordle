@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function KeypadRow({ row, usedKeys }) {
+export default function KeypadRow({ row, usedKeys, handleKeyUp }) {
 
     return (
         <div className="keypadRow">
@@ -8,7 +8,7 @@ export default function KeypadRow({ row, usedKeys }) {
                 const color = usedKeys[l.key]
 
                 return (
-                    <div key={l.key} className={color}>{l.key}</div>
+                    <button key={l.key} className={color} onClick={() => handleKeyUp(l)}>{l.key}</button>
                 )
             })}
         </div>

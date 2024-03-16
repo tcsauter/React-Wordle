@@ -69,26 +69,27 @@ h1 {
   max-width: 500px;
   margin: 20px auto;
 }
-.keypadRow > div {
+.keypadRow > button {
   margin: 5px;
   width: 40px;
   height: 50px;
   background: #eee;
+  border: none;
   display: inline-block;
   border-radius: 6px;
   line-height: 50px;
 }
-.keypadRow > div.green {
+.keypadRow > button.green {
   background: #5ac85a;
   color: #fff;
   transition: all 0.3s ease-in;
 }
-.keypadRow > div.yellow {
+.keypadRow > button.yellow {
   background: #e2cc68;
   color: #fff;
   transition: all 0.3s ease-in;
 }
-.keypadRow > div.grey {
+.keypadRow > button.grey {
   background: #a1a1a1;
   color: #fff;
   transition: all 0.3s ease-in;

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import KeypadRow from "./KeypadRow";
 
-//todo: make keys clickable
 //todo: add an enter key to the onscreen keypad
 
-export default function Keypad({ usedKeys }) {
+export default function Keypad({ usedKeys, handleKeyUp }) {
   const [rows, setRows] = useState(null)
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export default function Keypad({ usedKeys }) {
   return (
     <div className="keypad">
       {rows && rows.map((r, i) => (
-          <KeypadRow key={`kpr${i}`} row={r} usedKeys={usedKeys} />
+          <KeypadRow key={`kpr${i}`} row={r} usedKeys={usedKeys} handleKeyUp={handleKeyUp} />
       ))}
     </div>
   )
