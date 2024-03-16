@@ -94,6 +94,9 @@ h1 {
   color: #fff;
   transition: all 0.3s ease-in;
 }
+.keypadRow > button.enter {
+  width: 80px;
+}
 
 /* modal */
 .modal {

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import KeypadRow from "./KeypadRow";
 
-//todo: add an enter key to the onscreen keypad
-
 export default function Keypad({ usedKeys, handleKeyUp }) {
   const [rows, setRows] = useState(null)
 

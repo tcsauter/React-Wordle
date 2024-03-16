@@ -8,7 +8,7 @@ export default function KeypadRow({ row, usedKeys, handleKeyUp }) {
                 const color = usedKeys[l.key]
 
                 return (
-                    <button key={l.key} className={color} onClick={() => handleKeyUp(l)}>{l.key}</button>
+                    <button key={l.key} className={`${color} ${l.key.toLowerCase()}`} onClick={() => handleKeyUp(l)}>{l.key.toLowerCase()}</button>
                 )
             })}
         </div>
