@@ -91,36 +91,38 @@ const useWordle = (solution) => {
   // handle keyup event & track current guess
   // if user presses enter, add the new guess
   const handleKeyup = async ({ key }) => {
-    if (key === 'Enter') {
-      // only add guess if turn is less than 5
-      if (turn > 5) {
-        handleError('you used all your guesses!')
-        return
+    if (!isCorrect && turn < 6) {
+      if (key === 'Enter') {
+        // only add guess if turn is less than 5
+        if (turn > 5) {
+          handleError('you used all your guesses!')
+          return
+        }
+        // do not allow duplicate words
+        if (history.includes(currentGuess)) {
+          handleError('you already tried that word.')
+          return
+        }
+        // check word is 5 chars
+        if (currentGuess.length !== 5) {
+          handleError('word must be 5 chars.')
+          return
+        }
+        // only allow valid words
+        if (!(await validateGuess(currentGuess))) {
+          handleError('your guess is not in the word bank')
+          return
+        }
+        const formatted = formatGuess()
+        addNewGuess(formatted)
       }
-      // do not allow duplicate words
-      if (history.includes(currentGuess)) {
-        handleError('you already tried that word.')
-        return
+      if (key === 'Backspace') {
+        setCurrentGuess(prev => prev.slice(0, -1))
       }
-      // check word is 5 chars
-      if (currentGuess.length !== 5) {
-        handleError('word must be 5 chars.')
-        return
-      }
-      // only allow valid words
-      if (!(await validateGuess(currentGuess))) {
-        handleError('your guess is not in the word bank')
-        return
-      }
-      const formatted = formatGuess()
-      addNewGuess(formatted)
-    }
-    if (key === 'Backspace') {
-      setCurrentGuess(prev => prev.slice(0, -1))
-    }
-    if (/^[A-Za-z]$/.test(key)) {
-      if (currentGuess.length < 5) {
-        setCurrentGuess(prev => prev + key)
+      if (/^[A-Za-z]$/.test(key)) {
+        if (currentGuess.length < 5) {
+          setCurrentGuess(prev => prev + key)
+        }
       }
     }
 
