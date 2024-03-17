@@ -131,6 +131,19 @@ h1 {
   top: -20px;
   left: 240px;
 }
+.stats {
+  background: none;
+  font-family: fantasy;
+  font-size: larger;
+  position: relative;
+  top: -45px;
+  color: #ff004c;
+  border-color: #5ac85a;
+}
+.stats:disabled {
+  color: grey;
+  border-color: #cccccc;
+}
 
 /* toast */
 .toast {

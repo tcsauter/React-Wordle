@@ -45,6 +45,9 @@ export default function Wordle({ solution }) {
 
   return (
     <div>
+      <button className={"stats " + (isCorrect || turn > 5 ? "active" : "inactive")} disabled={!isCorrect && turn < 6} onClick={() => {
+        if (isCorrect || turn > 5) setShowModal(true)
+      }}>Stats</button>
       <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} isError={isError} />
       <Keypad usedKeys={usedKeys} handleKeyUp={handleKeyup} />
       {showModal && <Modal isCorrect={isCorrect} turn={turn} solution={solution} setShowModal={setShowModal} />}
