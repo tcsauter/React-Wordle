@@ -13,18 +13,35 @@ export default function Wordle({ solution }) {
   
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)
+    window.addEventListener('keyup', dismissModalOnEscape)
 
-    if (isCorrect) {
-      setTimeout(() => setShowModal(true), 2000)
+    if (turn > 5 || isCorrect) {
       window.removeEventListener('keyup', handleKeyup)
     }
+
+    return () => {
+      window.removeEventListener('keyup', handleKeyup)
+      window.removeEventListener('keyup', dismissModalOnEscape)
+    }
+  }, [handleKeyup, turn, isCorrect])
+
+  useEffect(() => {
     if (turn > 5) {
       setTimeout(() => setShowModal(true), 2000)
-      window.removeEventListener('keyup', handleKeyup)
     }
+  }, [turn]);
 
-    return () => window.removeEventListener('keyup', handleKeyup)
-  }, [handleKeyup, isCorrect, turn])
+  useEffect(() => {
+    if (isCorrect) {
+      setTimeout(() => setShowModal(true), 2000)
+    }
+  }, [isCorrect]);
+
+  function dismissModalOnEscape({ key }) {
+    if (key === "Escape") {
+      setShowModal(false)
+    }
+  }
 
   return (
     <div>
